@@ -33,18 +33,16 @@ describe('GitHub endpoints', () => {
   })
 
   it('caps page sizes at GitHub’s maximum', async () => {
-    const fetchMock = vi
-      .fn()
-      .mockResolvedValue(
-        new Response(
-          JSON.stringify({
-            total_count: 0,
-            incomplete_results: false,
-            items: [],
-          }),
-          { status: 200 },
-        ),
-      )
+    const fetchMock = vi.fn().mockResolvedValue(
+      new Response(
+        JSON.stringify({
+          total_count: 0,
+          incomplete_results: false,
+          items: [],
+        }),
+        { status: 200 },
+      ),
+    )
     vi.stubGlobal('fetch', fetchMock)
     await searchRepositories({ query: 'react', perPage: 200 })
     const invocation = fetchMock.mock.calls[0]

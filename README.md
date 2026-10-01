@@ -173,5 +173,4 @@ The running phase-by-phase record is in [ASSUMPTIONS_DECISIONS.md](./ASSUMPTIONS
 | Unit/integration/race tests and coverage command                                 | `src/**/*.test.*`, `vite.config.ts`, `package.json`                                | Automated suite verified; see current test run              |
 | Clean dependency install, typecheck, lint, test, production build                | `package-lock.json` and npm scripts                                                | Verified in an isolated clean project copy; 55 tests passed |
 | Final README and six decision records                                            | This file                                                                          | Done                                                        |
-#   D e v e l o p e r - I n t e l l i g e n c e - D a s h b o a r d  
- 
+| #                                                                                |
