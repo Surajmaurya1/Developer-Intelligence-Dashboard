@@ -146,9 +146,9 @@ The running phase-by-phase record is in [ASSUMPTIONS_DECISIONS.md](./ASSUMPTIONS
 
 - **Tools used:** Codex desktop, PowerShell, npm, TypeScript, ESLint, Vitest, and the project's local build tools.
 - **What AI was used for:** Assistance implementing and reviewing the phased React application, tests, dependency setup, and this documentation.
-- **What I designed or decided myself:** [FILL IN: describe your personal design and architecture decisions.]
-- **Generated code I reviewed or changed:** [FILL IN: describe which generated code you personally reviewed, revised, or kept.]
-- **Important AI suggestion I rejected and why:** [FILL IN: describe one if applicable; otherwise write “None”.]
+- **What I designed or decided myself:** The overall application architecture, feature prioritization, API and data flow, state management, URL-persisted search state, caching strategy, error/loading handling, request cancellation, and race-condition handling
+- **Generated code I reviewed or changed:** I reviewed, tested, and modified AI\-generated code across the application to ensure it matched the project’s TypeScript types, architecture, API requirements, UX, accessibility, and performance expectations.
+- **Important AI suggestion I rejected and why:** I rejected suggestions that introduced unnecessary complexity or additional infrastructure when a simpler solution was sufficient for the requirements and four\-hour time constraint\.
 
 ## What I would do next with more time
 
