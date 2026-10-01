@@ -9,6 +9,10 @@
   --border: #dbe3ed;
   --link: #2459c4;
   --soft: #f1f5f9;
+  /* EasyUI accent tokens — RGB triplets so rgb()/rgba() can use opacity. */
+  --easyui-accent: 56 132 255;
+  --easyui-accent-soft: 56 132 255;
+  --easyui-spotlight-bg: rgba(56, 132, 255, 0.06);
   font-family:
     Inter,
     ui-sans-serif,
@@ -33,6 +37,9 @@
   --border: #33445c;
   --link: #91b9ff;
   --soft: #1b2a40;
+  --easyui-accent: 145 185 255;
+  --easyui-accent-soft: 145 185 255;
+  --easyui-spotlight-bg: rgba(145, 185, 255, 0.08);
 }
 
 * {
@@ -731,5 +738,240 @@ button {
     scroll-behavior: auto !important;
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+/* ===== EasyUI primitive styles =====
+ *
+ * The custom elements below mirror the EasyUI catalog primitives that were
+ * shortlisted for this project. They use CSS custom properties so light and
+ * dark themes stay in sync without duplicating rules.
+ */
+
+.easyui-animated-tabs {
+  position: relative;
+  display: inline-flex;
+  gap: 0.25rem;
+  margin-block: 1.5rem;
+  padding: 0.25rem;
+  border: 1px solid rgb(var(--easyui-accent) / 0.18);
+  border-radius: 0.85rem;
+  background: linear-gradient(
+    180deg,
+    rgb(var(--easyui-accent) / 0.04),
+    transparent
+  );
+  box-shadow: 0 1px 0 rgb(var(--easyui-accent) / 0.08) inset;
+}
+.easyui-animated-tabs__option {
+  position: relative;
+  isolation: isolate;
+  min-height: 2.75rem;
+  padding: 0.4rem 1rem;
+  border: 0;
+  border-radius: 0.6rem;
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  font-weight: 650;
+  cursor: pointer;
+}
+.easyui-animated-tabs__option.is-active {
+  color: #ffffff;
+}
+.easyui-animated-tabs__option:focus-visible {
+  outline: 3px solid rgb(var(--easyui-accent) / 0.55);
+  outline-offset: 2px;
+}
+.easyui-animated-tabs__indicator {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: 0.6rem;
+  background: linear-gradient(
+    135deg,
+    rgb(var(--easyui-accent) / 1),
+    rgb(var(--easyui-accent) / 0.78)
+  );
+  box-shadow:
+    0 12px 24px -12px rgb(var(--easyui-accent) / 0.55),
+    0 1px 0 rgb(var(--easyui-accent) / 0.4) inset;
+}
+.easyui-animated-tabs__label {
+  position: relative;
+  z-index: 1;
+}
+
+.easyui-spotlight {
+  position: relative;
+  isolation: isolate;
+  border-radius: 1rem;
+}
+.easyui-spotlight__glow,
+.easyui-spotlight__border {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 220ms ease;
+}
+.easyui-spotlight:hover .easyui-spotlight__glow,
+.easyui-spotlight:focus-within .easyui-spotlight__glow,
+.easyui-spotlight:hover .easyui-spotlight__border,
+.easyui-spotlight:focus-within .easyui-spotlight__border {
+  opacity: 1;
+}
+.easyui-spotlight__glow {
+  z-index: -2;
+  mix-blend-mode: multiply;
+}
+.easyui-spotlight__border {
+  z-index: -1;
+  padding: 1px;
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+:root[data-theme='dark'] .easyui-spotlight__glow {
+  mix-blend-mode: screen;
+}
+.easyui-spotlight__content {
+  position: relative;
+  z-index: 1;
+  border-radius: inherit;
+}
+
+.easyui-slide-pagination {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+  padding: 0.25rem;
+}
+.easyui-slide-pagination button {
+  position: relative;
+  min-width: 2.75rem;
+  border: 1px solid var(--border);
+  border-radius: 0.6rem;
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+  font-weight: 650;
+  cursor: pointer;
+  transition:
+    color 180ms ease,
+    border-color 180ms ease;
+}
+.easyui-slide-pagination button:focus-visible {
+  outline: 3px solid rgb(var(--easyui-accent) / 0.55);
+  outline-offset: 2px;
+}
+.easyui-slide-pagination button[aria-current='page'] {
+  color: #ffffff;
+  border-color: transparent;
+}
+.easyui-slide-pagination button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+.easyui-slide-pagination__indicator {
+  position: absolute;
+  top: 50%;
+  z-index: -1;
+  transform: translate(-50%, -50%);
+  border-radius: 0.6rem;
+  background: linear-gradient(
+    135deg,
+    rgb(var(--easyui-accent) / 1),
+    rgb(var(--easyui-accent) / 0.78)
+  );
+  box-shadow:
+    0 14px 28px -16px rgb(var(--easyui-accent) / 0.55),
+    0 1px 0 rgb(var(--easyui-accent) / 0.4) inset;
+  pointer-events: none;
+}
+
+.easyui-animated-number {
+  position: relative;
+  display: inline-flex;
+  overflow: hidden;
+  vertical-align: baseline;
+}
+.easyui-animated-number__value {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.easyui-not-found {
+  position: relative;
+  display: grid;
+  gap: 1rem;
+  padding: clamp(1.5rem, 5vw, 3rem);
+  border: 1px solid var(--border);
+  border-radius: 1.25rem;
+  background:
+    radial-gradient(
+      circle at top,
+      rgb(var(--easyui-accent) / 0.08),
+      transparent 60%
+    ),
+    var(--surface);
+  overflow: hidden;
+}
+.easyui-not-found__glyphs {
+  display: flex;
+  gap: 0.25rem;
+  font-size: clamp(4rem, 14vw, 8rem);
+  font-weight: 800;
+  letter-spacing: -0.06em;
+  line-height: 1;
+  color: rgb(var(--easyui-accent) / 0.85);
+  user-select: none;
+}
+.easyui-not-found__glyph {
+  display: inline-block;
+  will-change: transform;
+}
+.easyui-not-found__action {
+  margin-top: 1rem;
+}
+.easyui-not-found__action a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 2.75rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid transparent;
+  border-radius: 0.6rem;
+  background: linear-gradient(
+    135deg,
+    rgb(var(--easyui-accent) / 1),
+    rgb(var(--easyui-accent) / 0.78)
+  );
+  color: #ffffff;
+  font-weight: 650;
+  text-decoration: none;
+  box-shadow: 0 14px 28px -16px rgb(var(--easyui-accent) / 0.55);
+}
+.easyui-not-found__action a:hover {
+  color: #ffffff;
+  filter: brightness(1.05);
+}
+
+/* When reduced motion is requested, suppress the dynamic EasyUI effects. */
+@media (prefers-reduced-motion: reduce) {
+  .easyui-spotlight__glow,
+  .easyui-spotlight__border,
+  .easyui-slide-pagination button,
+  .easyui-animated-number__value {
+    transition: none !important;
   }
 }

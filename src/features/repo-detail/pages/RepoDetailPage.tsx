@@ -9,6 +9,7 @@ import {
 import type { Issue, Repo } from '@/shared/types/github'
 import { useRepo } from '@/features/repo-detail/hooks/useRepo'
 import { useRepoIssues } from '@/features/repo-detail/hooks/useRepoIssues'
+import { AnimatedNumber } from '@/shared/ui/easyui/AnimatedNumber'
 
 const DEFAULT_DOCUMENT_TITLE = 'Developer Intelligence Dashboard'
 
@@ -209,19 +210,31 @@ function RepoSummary({ repo }: { repo: Repo }) {
         </a>
       </div>
       <dl className="repo-facts">
-        <Fact label="Stars" value={formatCompactNumber(repo.stars)} />
-        <Fact label="Forks" value={formatCompactNumber(repo.forks)} />
+        <Fact
+          label="Stars"
+          value={<AnimatedNumber formatted={formatCompactNumber(repo.stars)} />}
+        />
+        <Fact
+          label="Forks"
+          value={<AnimatedNumber formatted={formatCompactNumber(repo.forks)} />}
+        />
         <Fact
           label="Watchers"
           value={
-            repo.watchers === null
-              ? 'Not available'
-              : formatCompactNumber(repo.watchers)
+            repo.watchers === null ? (
+              'Not available'
+            ) : (
+              <AnimatedNumber
+                formatted={formatCompactNumber(repo.watchers)}
+              />
+            )
           }
         />
         <Fact
           label="Open issues"
-          value={formatCompactNumber(repo.openIssues)}
+          value={
+            <AnimatedNumber formatted={formatCompactNumber(repo.openIssues)} />
+          }
         />
         <Fact label="Language" value={repo.language ?? 'Not specified'} />
         <Fact label="Default branch" value={repo.defaultBranch} />
